@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Documents and Settings\Nishes\My Documents\Visual Studio 2005\Projects\Cards\callbreak.sln</TopNode>
+  <SelectedNode>[0-1009]Cards.tests.CardTestClass.TESTVALUE</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Documents and Settings\Nishes\My Documents\Visual Studio 2005\Projects\Cards\callbreak.sln" Expanded="true">
+      <Nodes>
+        <Node UniqueName="[0-1010]C:\Documents and Settings\Nishes\My Documents\Visual Studio 2005\Projects\Cards\bin\Debug\Cards.exe" Expanded="true">
+          <Nodes>
+            <Node UniqueName="[0-1011]Cards" Expanded="true">
+              <Nodes>
+                <Node UniqueName="[0-1012]Cards.tests" Expanded="true">
+                  <Nodes>
+                    <Node UniqueName="[0-1008]Cards.tests.CardTestClass" Expanded="true">
+                      <Nodes>
+                        <Node UniqueName="[0-1009]Cards.tests.CardTestClass.TESTVALUE" />
+                      </Nodes>
+                    </Node>
+                    <Node UniqueName="[0-1001]Cards.tests.PlayerTestClass" Expanded="true">
+                      <Nodes>
+                        <Node UniqueName="[0-1002]Cards.tests.PlayerTestClass.AddCard" />
+                        <Node UniqueName="[0-1004]Cards.tests.PlayerTestClass.handContainsAceofClubs" />
+                        <Node UniqueName="[0-1007]Cards.tests.PlayerTestClass.InitialHandCountisthirteen" />
+                        <Node UniqueName="[0-1003]Cards.tests.PlayerTestClass.IsID1" />
+                        <Node UniqueName="[0-1006]Cards.tests.PlayerTestClass.RemoveAceOfclubsFromHand" />
+                        <Node UniqueName="[0-1005]Cards.tests.PlayerTestClass.RemoveAceOfDiamondsFromHand" />
+                      </Nodes>
+                    </Node>
+                  </Nodes>
+                </Node>
+              </Nodes>
+            </Node>
+          </Nodes>
+        </Node>
+      </Nodes>
+    </Node>
+  </Nodes>
+</VisualState>

@@ -60,39 +60,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AIPlayer.cs" />
-    <Compile Include="AIPlayerNames.cs">
+    <Compile Include="Forms\AIPlayerNames.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AIPlayerNames.Designer.cs">
+    <Compile Include="Forms\AIPlayerNames.Designer.cs">
       <DependentUpon>AIPlayerNames.cs</DependentUpon>
     </Compile>
     <Compile Include="IAIStrategy.cs" />
-    <Compile Include="BidForm.cs">
+    <Compile Include="Forms\BidForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BidForm.Designer.cs">
+    <Compile Include="Forms\BidForm.Designer.cs">
       <DependentUpon>BidForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Card.cs" />
-    <Compile Include="CardUtility.cs" />
+    <Compile Include="Lib\Card.cs" />
+    <Compile Include="Lib\CardUtility.cs" />
     <Compile Include="ChooseDeck.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChooseDeck.Designer.cs">
       <DependentUpon>ChooseDeck.cs</DependentUpon>
     </Compile>
-    <Compile Include="Deck.cs" />
+    <Compile Include="Lib\Deck.cs" />
     <Compile Include="GameRule.cs" />
-    <Compile Include="GameStateManager.cs" />
+    <Compile Include="States\BidState.cs" />
+    <Compile Include="States\GameStateManager.cs" />
     <Compile Include="GUI\gui.cs" />
-    <Compile Include="Hand.cs" />
+    <Compile Include="Lib\Hand.cs" />
     <Compile Include="HumanPlayer.cs" />
-    <Compile Include="IGameState.cs" />
-    <Compile Include="IntroState.cs" />
-    <Compile Include="LooserForm.cs">
+    <Compile Include="States\IGameState.cs" />
+    <Compile Include="States\IntroState.cs" />
+    <Compile Include="Forms\LooserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LooserForm.Designer.cs">
+    <Compile Include="Forms\LooserForm.Designer.cs">
       <DependentUpon>LooserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
@@ -101,15 +102,15 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="NameBox.cs">
+    <Compile Include="Forms\NameBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NameBox.Designer.cs">
+    <Compile Include="Forms\NameBox.Designer.cs">
       <DependentUpon>NameBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pile.cs" />
+    <Compile Include="Lib\Pile.cs" />
     <Compile Include="player.cs" />
-    <Compile Include="Pot.cs" />
+    <Compile Include="Lib\Pot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -123,33 +124,33 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RandomAIStrategy.cs" />
-    <Compile Include="ScoreDisplay.cs">
+    <Compile Include="Forms\ScoreDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ScoreDisplay.Designer.cs">
+    <Compile Include="Forms\ScoreDisplay.Designer.cs">
       <DependentUpon>ScoreDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpadesCard.cs" />
-    <Compile Include="SplashScreen.cs">
+    <Compile Include="Lib\SpadesCard.cs" />
+    <Compile Include="Forms\SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SplashScreen.Designer.cs">
+    <Compile Include="Forms\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="SplashScreenState.cs" />
-    <Compile Include="WinnerForm.cs">
+    <Compile Include="States\SplashScreenState.cs" />
+    <Compile Include="Forms\WinnerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WinnerForm.Designer.cs">
+    <Compile Include="Forms\WinnerForm.Designer.cs">
       <DependentUpon>WinnerForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AIPlayerNames.resx">
+    <EmbeddedResource Include="Forms\AIPlayerNames.resx">
       <DependentUpon>AIPlayerNames.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="BidForm.resx">
+    <EmbeddedResource Include="Forms\BidForm.resx">
       <DependentUpon>BidForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -157,7 +158,7 @@
       <DependentUpon>ChooseDeck.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="LooserForm.resx">
+    <EmbeddedResource Include="Forms\LooserForm.resx">
       <DependentUpon>LooserForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -165,7 +166,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NameBox.resx">
+    <EmbeddedResource Include="Forms\NameBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NameBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,27 +175,23 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScoreDisplay.resx">
+    <EmbeddedResource Include="Forms\ScoreDisplay.resx">
       <DependentUpon>ScoreDisplay.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SplashScreen.resx">
+    <EmbeddedResource Include="Forms\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinnerForm.resx">
+    <EmbeddedResource Include="Forms\WinnerForm.resx">
       <DependentUpon>WinnerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ajax-loader.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\one1600x1200 copy.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -225,9 +222,64 @@
     <None Include="Resources\ace-spades2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\cards.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="Resources\57.bmp" />
+    <None Include="Resources\55.bmp" />
+    <None Include="Resources\54.bmp" />
+    <None Include="Resources\56.bmp" />
+    <None Include="Resources\53.bmp" />
+    <None Include="Resources\52.bmp" />
+    <None Include="Resources\51.bmp" />
+    <None Include="Resources\50.bmp" />
+    <None Include="Resources\49.bmp" />
+    <None Include="Resources\48.bmp" />
+    <None Include="Resources\47.bmp" />
+    <None Include="Resources\46.bmp" />
+    <None Include="Resources\45.bmp" />
+    <None Include="Resources\44.bmp" />
+    <None Include="Resources\43.bmp" />
+    <None Include="Resources\42.bmp" />
+    <None Include="Resources\41.bmp" />
+    <None Include="Resources\40.bmp" />
+    <None Include="Resources\39.bmp" />
+    <None Include="Resources\38.bmp" />
+    <None Include="Resources\37.bmp" />
+    <None Include="Resources\36.bmp" />
+    <None Include="Resources\35.bmp" />
+    <None Include="Resources\34.bmp" />
+    <None Include="Resources\33.bmp" />
+    <None Include="Resources\32.bmp" />
+    <None Include="Resources\31.bmp" />
+    <None Include="Resources\30.bmp" />
+    <None Include="Resources\29.bmp" />
+    <None Include="Resources\28.bmp" />
+    <None Include="Resources\27.bmp" />
+    <None Include="Resources\26.bmp" />
+    <None Include="Resources\25.bmp" />
+    <None Include="Resources\24.bmp" />
+    <None Include="Resources\23.bmp" />
+    <None Include="Resources\22.bmp" />
+    <None Include="Resources\21.bmp" />
+    <None Include="Resources\20.bmp" />
+    <None Include="Resources\19.bmp" />
+    <None Include="Resources\18.bmp" />
+    <None Include="Resources\17.bmp" />
+    <None Include="Resources\16.bmp" />
+    <None Include="Resources\15.bmp" />
+    <None Include="Resources\14.bmp" />
+    <None Include="Resources\13.bmp" />
+    <None Include="Resources\12.bmp" />
+    <None Include="Resources\11.bmp" />
+    <None Include="Resources\10.bmp" />
+    <None Include="Resources\9.bmp" />
+    <None Include="Resources\8.bmp" />
+    <None Include="Resources\7.bmp" />
+    <None Include="Resources\6.bmp" />
+    <None Include="Resources\5.bmp" />
+    <None Include="Resources\4.bmp" />
+    <None Include="Resources\3.bmp" />
+    <None Include="Resources\2.bmp" />
+    <None Include="Resources\1.bmp" />
+    <None Include="Resources\0.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

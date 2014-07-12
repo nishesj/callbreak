@@ -53,25 +53,7 @@ namespace Cards
         public List<player> CurrentPlayerList; // list of current player currentPlayerList[0] is player with ID 0
         public Pot CurrentPot; // when a valid card is played then it is added in the pot ( displayed in middle of screen)        
     }
-    [Serializable]
-    public struct NetwrokGameData
-    {
-        public int CurrentRound; // current round being played MAX is 5
-        public int HandCounter; // keeps track of played card MAX is 13
-        public int ActivePlayerId; // ID of the current player
-
-        /// <summary>
-        /// score[RoundIndex,PlayerID] = score;
-        /// RoundIndex starts from 0 and goes upto 4;
-        /// </summary>
-        public float[,] score;
-
-        public int HandWinnerID; // Player ID of the Hand Winner for animation 
-        public int RoundStarter; // (not used but may be useful )
-        public GameState GameState; // state of the game 
-        public Pile WastePile; // waste cards or Already played cards
-        public Pot CurrentPot; // when a valid card is played then it is added in the pot ( displayed in middle of screen)
-    }
+    
     [Serializable]
     public enum GameState
     {
@@ -98,6 +80,7 @@ namespace Cards
         private Cards.Card card = new Card();
 
         public static int boardBelongsTo = 0; // variable to store playerID which clients board is this so that we can arranage the position 
+        public const int gameRounds = 4; // starts with 0
         public static string playerName;
         delegate void refreshBoard();
 
@@ -142,16 +125,11 @@ namespace Cards
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-
             Graphics graphics = e.Graphics;
-
-
             if (RefreshWholeBoard)
             {
                 SpadesGui.refreshBoard(graphics, ref gameData);
             }
-
-            // base.OnPaint(e);
         }
 
         /// <summary>
@@ -204,7 +182,6 @@ namespace Cards
                         SpadesCard c = (SpadesCard)gameData.CurrentPlayerList[activePlayerId].Hand.CardPile[index];
                         c.MoveUp = true;
                         gameData.CurrentPlayerList[activePlayerId].Hand.CardPile[index] = c;
-                        //this.Invalidate(new Rectangle(gameData.CurrentPlayerList[0].PositionX - 100, gameData.CurrentPlayerList[0].PositionY - 50, (gameData.CurrentPlayerList[0].PositionX + 75) + (15 * cardCount), 150), true);
                         this.Invalidate();
                     }
 
@@ -399,10 +376,7 @@ namespace Cards
 
             this.Invalidate();
             this.Update();
-
-            //redrawForm();
             animationCounter--;
-
 
             if (animationCounter == 0)
             {
@@ -421,16 +395,12 @@ namespace Cards
                     //  int roundIndex = CurrentRound - 1;
                     int roundIndex = gameData.CurrentRound - 1;
                     CalculateScore(roundIndex);
-
-
-
-
                     updateRoundStarter(gameData.RoundStarter);
 
                     gameData.CurrentRound++; // increase the round number
 
 
-                    if (gameData.CurrentRound > 5)
+                    if (gameData.CurrentRound > gameRounds)
                     {
                         // this is the finsh of the game 
                         GameFinished();
@@ -449,11 +419,6 @@ namespace Cards
                 gameData.CurrentPot.ClearPot(); // clear the pot for next round
                 updateTurn(gameData.HandWinnerID - 1);
             }
-
-
-
-
-
         }
         /// <summary>
         /// Updates the Id of round starter. (who is going to bid first)
@@ -519,7 +484,6 @@ namespace Cards
                 {
                     gameData.score[i, j] = 0; // initialize score to null
                 }
-
             }
 
             gameData.CurrentRound = 1;
@@ -584,19 +548,11 @@ namespace Cards
                     IsAnimating = true;
                     animationCounter = 40;
                     this.animationTimer.Start();
-
                 }
 
             }
 
         }
-
-
-
-
-
-
-
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -626,14 +582,9 @@ namespace Cards
         /// <returns></returns>
         public bool startGame()
         {
-
-
             startRound(gameData.CurrentRound);
             this.Refresh();
-
-
             gameData.GameState = GameState.PLAYING;
-
             IsAnimating = false;
             this.startTurn();
             return true;
@@ -668,14 +619,9 @@ namespace Cards
                 p.IsActivePlayer = false;
             }
 
-
-
             // this is to prevent computer moves overlap
             if (IsAnimating == true) return;
-
-
-
-
+            
             gameData.CurrentPlayerList[gameData.ActivePlayerId].IsActivePlayer = true;
             gameStatusLabel.Text = " Waiting for " + gameData.CurrentPlayerList[gameData.ActivePlayerId].Name + " ....";
 
@@ -730,10 +676,6 @@ namespace Cards
                 return; // wait for human move 
             }
         }
-
-
-
-
 
 
         /// <summary>
@@ -825,9 +767,7 @@ namespace Cards
             gameData.CurrentPot.ClearPot();
 
             gameDeck = new Deck();
-
-
-            CardUtility.ShufflePile(gameDeck);
+            gameDeck.Shuffle();           
 
 
             Hand[] hand = new Hand[4];
@@ -843,7 +783,7 @@ namespace Cards
                 }
 
                 counter = counter + 13;
-                CardUtility.SortBySuit(hand[j]);
+                hand[j].sort();
 
             }
 
@@ -855,47 +795,14 @@ namespace Cards
                 k++;
                 p.TotalBid = 0;
                 p.TotalTrick = 0;
-
             }
 
-            updateCardPosition();
             gameData.GameState = GameState.BIDDING;
             updateGameState(gameData);
-
-
             return true;
 
         }
-
-        /// <summary>
-        /// updates each cards position in player hand
-        /// </summary>
-        private void updateCardPosition()
-        {/*
-            foreach (player p in gameData.CurrentPlayerList)
-            {
-                int xinc = 0;
-                int yinc = 0;
-                foreach (SpadesCard icard in p.Hand.CardPile)
-                {
-                    //int x = p.PositionX + xinc;
-                    //int y = p.PositionY + yinc;
-
-                    int x = playerPositions[p.ID].x + xinc;
-                    int y = playerPositions[p.ID].y + yinc;
-
-                    icard.CardPositionX = x;
-                    icard.CardPositionY = y;
-
-                    // if 0 0r 2 
-                    if (playerPositions[p.ID].seat == "N" || playerPositions[p.ID].seat == "S") xinc = xinc + 15;
-                    else yinc = yinc + 15;
-                }
-            }
-          */
-        }
-
-
+        
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.ExitThread();
@@ -1034,11 +941,11 @@ namespace Cards
             gameStateManager.switchState(bidState);
             gameStateManager.Process();
         }
+
         public void enterPlayingState()
         {
             redrawForm();
             this.startTurn();
-
         }
 
 
@@ -1053,8 +960,6 @@ namespace Cards
             SpadesGui.Initialize(ref gameData);
             this.Update();
             this.Refresh();
-            //this.startTurn();
-
         }
 
     }

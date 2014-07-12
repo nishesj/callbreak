@@ -11,7 +11,7 @@ namespace Cards.GUI
     {
 
         static Card card = new Card();
-        public static CardBack CardBack = CardBack.Sky;
+        public static CardBack CardBack = CardBack.Heart;
         static Graphics G = null;
         static List<player> SpadesPlayer;
         static Pot Pot;
@@ -79,47 +79,17 @@ namespace Cards.GUI
             int potCount = Pot.CardPile.Count;
             if ( potCount > 0)
             {
-
-                foreach (Cards.SpadesPot pot in Pot.potList)
+                foreach (Cards.SpadesCard pot in Pot.CardPile)
                 {
-                    
+
                     card.Begin(G);
-                    SpadesCard  c = pot.card;
-                    int pid = pot.potter.ID;
-                    int xnew = Cards.Main.playerPositions[pid].x;
-                    int ynew = Cards.Main.playerPositions[pid].y;
-
-                    if (Cards.Main.playerPositions[pid].seat == "N")
-                    {
-                        xnew = xnew + 80;
-                        ynew = ynew + 120;
-                    }
-
-                    if (Cards.Main.playerPositions[pid].seat == "S")
-                    {
-                        xnew = xnew + 80;
-                        ynew = ynew - 120;
-                    }
-
-
-                    if (Cards.Main.playerPositions[pid].seat == "E")
-                    {
-                        xnew = xnew - 180;
-                        ynew = ynew + 90;
-                    }
-
-
-                    if (Cards.Main.playerPositions[pid].seat == "W")
-                    {
-                        xnew = xnew + 180;
-                        ynew = ynew + 80;
-                    }
-
-
-                    card.DrawCard(new Point(xnew, ynew), c.CardIndex);
+                    int xnew = pot.CardPositionX;
+                    int ynew = pot.CardPositionY;
+                    card.DrawCard(new Point(xnew, ynew), pot.CardIndex);
                     card.End();
 
                 }
+                
             }
         }
 

@@ -8,7 +8,7 @@ namespace Cards
     public partial class ChooseDeck : Form
     {
         static Card card = new Card();
-        public CardBack choosenCardBack = CardBack.Sky;
+        public CardBack choosenCardBack = CardBack.Heart;
         public List<PictureBox> PictureBoxList = new List<PictureBox>();
         public ChooseDeck()
         {
@@ -44,19 +44,12 @@ namespace Cards
 
         private void ChooseDeck_Load(object sender, EventArgs e)
         {
-            List<CardBack> unUsedCardBack = new List<CardBack>();
-            unUsedCardBack.Add(CardBack.Crosshatch);
-            unUsedCardBack.Add(CardBack.The_X);
-            unUsedCardBack.Add(CardBack.The_O);
-            unUsedCardBack.Add(CardBack.Unused);
-            
             
             
             
             foreach(CardBack cb in Enum.GetValues(typeof(CardBack)))
             {
 
-                if (unUsedCardBack.Contains(cb)) continue;
                 PictureBoxList.Add(new PictureBox());
                 int lastIndex = PictureBoxList.Count - 1;
                 //set property
