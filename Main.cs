@@ -399,8 +399,8 @@ namespace Cards
 
                     gameData.CurrentRound++; // increase the round number
 
-
-                    if (gameData.CurrentRound > gameRounds)
+                    
+                    if (gameData.CurrentRound > (gameRounds +1))
                     {
                         // this is the finsh of the game 
                         GameFinished();
